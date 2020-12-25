@@ -16,7 +16,7 @@ import controller.dao.DaoFactory;
 import controller.dao.VocabularyDao;
 import model.Vocabulary;
 
-public class Play {
+public class Play2 {
 	private static String help = "[table id] [add en ct] [query-all|q-all|q] [query-id id|q-id id] [update id en ct] [delete id]"
 			+ " [help] [exit]";
 

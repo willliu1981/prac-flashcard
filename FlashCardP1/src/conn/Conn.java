@@ -8,11 +8,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import controller.App;
+
 public class Conn {
 	static private Conn conn=new Conn();
 	static {
 		try {
-			conn.init("resource\\mysql.ini");
+			conn.init(App.getBasePath()+"mysql.ini");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

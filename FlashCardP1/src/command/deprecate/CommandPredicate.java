@@ -1,4 +1,6 @@
-package command;
+package command.deprecate;
+
+import command.Process;
 
 public abstract class CommandPredicate {
 	protected String[] parameters;
@@ -9,6 +11,11 @@ public abstract class CommandPredicate {
 	
 	public static boolean predicate(CommandPredicate comm) {
 		return comm.getPredicate();
+	}
+	
+	public static void process(Process process) {
+		
+		
 	}
 	
 	

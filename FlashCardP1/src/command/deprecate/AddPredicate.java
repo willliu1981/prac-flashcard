@@ -1,4 +1,4 @@
-package command;
+package command.deprecate;
 
 public class AddPredicate extends CommandPredicate {
 
