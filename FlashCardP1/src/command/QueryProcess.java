@@ -12,7 +12,7 @@ public class QueryProcess extends Process {
 	private Dao<?> dao;
 
 	public QueryProcess( Dao<?> dao) {
-		this.dao = dao;
+		this.dao = dao  ;
 	}
 
 	@Override
