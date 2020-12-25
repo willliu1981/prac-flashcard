@@ -14,7 +14,7 @@ import model.Vocabulary;
 
 public class CardDao_v1 extends CardDao {
 
-	protected CardDao_v1(String type) {
+	public CardDao_v1(String type) {
 		super(type);
 		// TODO Auto-generated constructor stub
 	}

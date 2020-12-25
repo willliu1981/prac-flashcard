@@ -13,7 +13,7 @@ import conn.Conn;
 import model.Vocabulary;
 
 public class VocabularyDao_v1 extends VocabularyDao {
-	protected VocabularyDao_v1(String type) {
+	public VocabularyDao_v1(String type) {
 		super(type);
 		// TODO Auto-generated constructor stub
 	}

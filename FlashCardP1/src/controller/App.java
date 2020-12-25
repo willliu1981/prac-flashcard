@@ -23,7 +23,11 @@ public class App {
 		return props.getProperty("basepath");
 	}
 	
-	public static String getTable(String name) {
-		return props.getProperty(name.toLowerCase().trim());
+	public static String getDaoClassPath(String name) {
+		return props.getProperty(name.toLowerCase());
+	}
+	
+	public static String getDaoSimpleName(String name) {
+		return props.getProperty(name.toLowerCase()+"-name");
 	}
 }

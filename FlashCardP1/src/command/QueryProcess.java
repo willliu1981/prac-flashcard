@@ -2,17 +2,16 @@ package command;
 
 import java.sql.SQLException;
 import java.util.List;
-
-import controller.App;
 import controller.dao.Dao;
 import model.Card;
 import model.Vocabulary;
 
 public class QueryProcess extends Process {
-	private Dao dao;
+	private static final String format="query";
+	
+	private Dao<?> dao;
 
-	protected QueryProcess(String format, Dao dao) {
-		super(format);
+	public QueryProcess( Dao<?> dao) {
 		this.dao = dao;
 	}
 
@@ -27,14 +26,14 @@ public class QueryProcess extends Process {
 	public void execute() {
 		try {
 			switch (this.userIn[0].toLowerCase()) {
-			case "q":
+			case format:
 				switch (dao.getType()) {
 				case "Vocabulary":
-					List<Vocabulary> vlst = dao.queryall();
+					List<Vocabulary> vlst = (List<Vocabulary>) dao.queryall();
 					vlst.forEach(System.out::println);
 					break;
 				case "Card":
-					List<Card> clst = dao.queryall();
+					List<Card> clst = (List<Card>) dao.queryall();
 					clst.forEach(System.out::println);
 					break;
 				default:
@@ -49,6 +48,12 @@ public class QueryProcess extends Process {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public String getFormat() {
+		// TODO Auto-generated method stub
+		return format;
 	}
 
 }
