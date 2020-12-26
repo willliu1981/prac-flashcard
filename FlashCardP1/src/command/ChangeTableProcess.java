@@ -5,15 +5,12 @@ import controller.dao.Dao;
 import controller.dao.DaoFactory;
 
 public class ChangeTableProcess extends Process {
-	private Dao<?> dao;
 
-	public ChangeTableProcess( Dao<?> dao) {
-		this.dao=dao;
-	}
+//	public ChangeTableProcess( Dao<?> dao) {
+//		this.dao=dao;
+//	}
 
-	public Dao<?> getDao() {
-		return this.dao;
-	}
+
 
 	@Override
 	public boolean predicate(String[] userIn) {
@@ -23,9 +20,10 @@ public class ChangeTableProcess extends Process {
 	}
 
 	@Override
-	public void execute() {
+	public int execute() {
 		this.dao = DaoFactory.getDao( this.userIn[1].toLowerCase());
 		System.out.println("table 切換為 " + App.getDaoSimpleName( this.userIn[1].toLowerCase()));
+		return 1;
 	}
 
 	@Override

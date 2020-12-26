@@ -3,11 +3,17 @@ package command;
 import java.util.ArrayList;
 import java.util.List;
 
+import controller.dao.Dao;
+
 public class CmdBox {
 	private static List<Process> list = new ArrayList<>();
 
 	public static void addProcess(Process process) {
 		list.add(process);
+	}
+	
+	public static void setDao(Dao dao) {
+		list.forEach(p->p.setDao(dao));
 	}
 
 	public static boolean executeCmd(String userIn) {
@@ -24,9 +30,18 @@ public class CmdBox {
 					break;
 				}
 			}
-			
+
 			if (process != null && process.predicate(userIns)) {
-				process.execute();
+				int result = process.execute();
+				switch (result) {
+				case 0:
+					break;
+				case 1:
+					CmdBox.setDao(process.getDao());
+					break;
+				default:
+					break;
+				}
 				boolResult = true;
 			} else {
 				boolResult = false;

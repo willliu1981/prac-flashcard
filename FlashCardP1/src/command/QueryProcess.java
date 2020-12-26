@@ -2,6 +2,7 @@ package command;
 
 import java.sql.SQLException;
 import java.util.List;
+
 import controller.dao.Dao;
 import model.Card;
 import model.Vocabulary;
@@ -9,11 +10,10 @@ import model.Vocabulary;
 public class QueryProcess extends Process {
 	private static final String format="query";
 	
-	private Dao<?> dao;
 
-	public QueryProcess( Dao<?> dao) {
-		this.dao = dao  ;
-	}
+//	public QueryProcess( Dao<?> dao) {
+//		this.dao = dao  ;
+//	}
 
 	@Override
 	public boolean predicate(String[] userIn) {
@@ -23,7 +23,7 @@ public class QueryProcess extends Process {
 	}
 
 	@Override
-	public void execute() {
+	public int execute() {
 		try {
 			switch (this.userIn[0].toLowerCase()) {
 			case format:
@@ -48,6 +48,7 @@ public class QueryProcess extends Process {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return 0;
 	}
 
 	@Override

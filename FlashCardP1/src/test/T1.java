@@ -45,7 +45,7 @@ public class T1 {
 		System.out.println(ss);
 		System.out.println("ss : "+ss.hashCode()+" , "+System.identityHashCode(ss));
 		System.out.println("sss : "+sss.hashCode()+" , "+System.identityHashCode(sss));
-		*///
+		///
 		
 		System.out.println("Enter country code\nChoices: IND, USA, JPN, NZ, WI");
 	    Scanner cc = new Scanner(System.in);
@@ -77,6 +77,18 @@ public class T1 {
 	        default:
 	            System.out.println("Invalid choice");
 	   }
+	   *///
+		
+		int a=1;
+	    int i = a+7;
+	    
+	    // lambda expression that implements the display method 
+	    // of the IFunc functional interface 
+	    
+	    IFunc ifunc = ()-> System.out.println("Value of i is " + i);
+	    // Calling the display method
+	    ifunc.display();
+	  
 	}
 
 	class A {

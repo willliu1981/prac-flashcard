@@ -30,9 +30,10 @@ public class Play {
 		args = new String[] { "query-all" };
 		Scanner sc = new Scanner(System.in);
 		Dao<?> dao=(Dao<?>)DaoFactory.getDao(App.getDaoSimpleName("vocabulary"));
-		CmdBox.addProcess(new QueryProcess( dao));
-		CmdBox.addProcess(new ChangeTableProcess( dao));
-	
+		CmdBox.addProcess(new QueryProcess( ));
+		CmdBox.addProcess(new ChangeTableProcess( ));
+		CmdBox.setDao(dao);
+		
 			System.out.println("請輸入代碼:");
 			while (sc.hasNextLine()) {
 				String line=sc.nextLine();
