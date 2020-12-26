@@ -1,8 +1,8 @@
-package command;
+package command.process;
 
 import controller.dao.Dao;
 
-public abstract class Process {
+public abstract class Process  {
 
 	protected String[] userIn;
 	protected Dao<?> dao;
@@ -12,7 +12,7 @@ public abstract class Process {
 		return false;
 	}
 	
-	public void setDao(Dao dao) {
+	public void setDao(Dao<?> dao) {
 		this.dao=dao;
 	}
 
@@ -22,5 +22,5 @@ public abstract class Process {
 	
 	public abstract int execute();
 	
-	public abstract String getFormat() ;
+	public abstract String getArgument() ;
 }

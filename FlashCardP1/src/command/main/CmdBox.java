@@ -1,18 +1,20 @@
-package command;
+package command.main;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import command.process.Process;
 import controller.dao.Dao;
 
 public class CmdBox {
+	
 	private static List<Process> list = new ArrayList<>();
 
 	public static void addProcess(Process process) {
 		list.add(process);
 	}
 	
-	public static void setDao(Dao dao) {
+	public static  void setDao(Dao<?> dao) {
 		list.forEach(p->p.setDao(dao));
 	}
 
@@ -25,7 +27,7 @@ public class CmdBox {
 		if (userIns[0] != "") {
 			Process process = null;
 			for (Process p : list) {
-				if (p.getFormat().equalsIgnoreCase(userIns[0])) {
+				if (p.getArgument().equalsIgnoreCase(userIns[0])) {
 					process = p;
 					break;
 				}

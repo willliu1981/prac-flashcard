@@ -1,6 +1,6 @@
-package command.deprecate;
+package command.deprecate.deprecate;
 
-import command.Process;
+import command.process.Process;
 
 public abstract class CommandPredicate {
 	protected String[] parameters;

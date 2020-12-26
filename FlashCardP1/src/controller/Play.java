@@ -7,41 +7,40 @@ import java.util.Scanner;
 
 import com.google.gson.Gson;
 
-import command.ChangeTableProcess;
-import command.CmdBox;
-import command.QueryProcess;
-import command.deprecate.AddPredicate;
-import command.deprecate.CommandPredicate;
-import command.deprecate.QueryPredicate;
-import command.deprecate.UpdatePredicate;
+import command.deprecate.deprecate.AddPredicate;
+import command.deprecate.deprecate.CommandPredicate;
+import command.deprecate.deprecate.QueryPredicate;
+import command.deprecate.deprecate.UpdatePredicate;
+import command.execute.QueryCardExecute;
+import command.execute.QueryVocabularyExecute;
+import command.main.CmdBox;
+import command.process.ChangeTableProcess;
+import command.process.QueryProcess;
 import controller.dao.Dao;
 import controller.dao.DaoFactory;
 import controller.dao.VocabularyDao;
 import model.Vocabulary;
 
 public class Play {
-	private static String help = "[table id] [add en ct] [query-all|q-all|q] [query-id id|q-id id] [update id en ct] [delete id]"
-			+ " [help] [exit]";
+	private static String help = "[query] [table id]";
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println(help);
 
-		args = new String[] { "query-all" };
 		Scanner sc = new Scanner(System.in);
-		Dao<?> dao=(Dao<?>)DaoFactory.getDao(App.getDaoSimpleName("vocabulary"));
-		CmdBox.addProcess(new QueryProcess( ));
-		CmdBox.addProcess(new ChangeTableProcess( ));
+		CmdBox.addProcess(new QueryProcess(new QueryVocabularyExecute(),new QueryCardExecute()));
+		CmdBox.addProcess(new ChangeTableProcess());
+		Dao<?> dao = (Dao<?>) DaoFactory.getDao(App.getDaoSimpleName("vocabulary"));
 		CmdBox.setDao(dao);
-		
-			System.out.println("請輸入代碼:");
-			while (sc.hasNextLine()) {
-				String line=sc.nextLine();
-				CmdBox.executeCmd(line);
-				System.out.println("請輸入代碼:");
-			}
 
-		
+		System.out.println("請輸入代碼:");
+		while (sc.hasNextLine()) {
+			String line = sc.nextLine();
+			CmdBox.executeCmd(line);
+			System.out.println("請輸入代碼:");
+		}
+
 	}
-	
+
 }
