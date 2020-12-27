@@ -15,7 +15,7 @@ public class DaoFactory {
 		Properties props = new Properties();
 		try {
 			props.load(new FileInputStream(App.getBasePath() + "config.cfg"));
-			Class<?> c = Class.forName(App.getDaoClassPath(name.toLowerCase()));
+			Class<?> c = Class.forName(App.getDaoClassPath(name));
 			Constructor<?> ctor = c.getConstructor(String.class);
 			d = (Dao<?>) ctor.newInstance(App.getDaoSimpleName(name));
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IOException

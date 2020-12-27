@@ -7,17 +7,10 @@ import com.command.execute.ModelExecute;
 import com.command.main.CmdBox;
 import com.controller.dao.Dao;
 
-public class AddProcess extends Process {
+public class AddProcess1 extends AddProcess {
 	private static final String argument = "add";
 
-	public AddProcess(CmdBox cmdBox,Execute... executes) {
-		super(cmdBox,executes);
-		// TODO Auto-generated constructor stub
-	}
-	
-	
-
-	protected AddProcess(ProcessFactory pFactory, Execute... executes) {
+	public AddProcess1(ProcessFactory pFactory, Execute... executes) {
 		super(pFactory, executes);
 		// TODO Auto-generated constructor stub
 	}
@@ -49,7 +42,7 @@ public class AddProcess extends Process {
 	@Override
 	public void setCurrentExecute() {
 		for (Execute execute : executes) {
-			if (((ModelExecute) execute).getModelName().equalsIgnoreCase(this.cmdBox.getDao().getType())) {
+			if (((ModelExecute) execute).getModelName().equalsIgnoreCase(this.processFactory.getDao().getType())) {
 				this.currentExecute = execute;
 			}
 		}
@@ -59,7 +52,7 @@ public class AddProcess extends Process {
 	public int execute(String[] params, int access) {
 		try {
 			if(access==1) {
-				this.currentExecute.execute((Dao) this.cmdBox.getDao(),params);
+				this.currentExecute.execute((Dao) this.processFactory.getDao(),params);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block

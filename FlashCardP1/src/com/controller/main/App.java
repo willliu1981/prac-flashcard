@@ -24,7 +24,11 @@ public class App {
 	}
 	
 	public static String getDaoClassPath(String name) {
-		return props.getProperty(name.toLowerCase());
+		return props.getProperty(name.toLowerCase()+"-dao");
+	}
+	
+	public static String getProcessClassPath(String name) {
+		return props.getProperty(name.toLowerCase()+"-process");
 	}
 	
 	public static String getDaoSimpleName(String name) {

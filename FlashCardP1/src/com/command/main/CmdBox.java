@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.command.process.Process;
+import com.command.process.ProcessFactory;
 import com.controller.dao.Dao;
 
 public class CmdBox {
@@ -14,6 +15,10 @@ public class CmdBox {
 	public static void addProcess(Process process) {
 		list.add(process);
 	}
+	
+	public static void addProcess(ProcessFactory processFactory) {
+		list.add(processFactory.getProcess());
+	}
 
 	public Dao getDao() {
 		return dao;
@@ -22,6 +27,7 @@ public class CmdBox {
 	public void setDao(Dao dao) {
 		this.dao = dao;
 	}
+
 
 	public static boolean executeCmd(String userIn) {
 		boolean boolResult = false;

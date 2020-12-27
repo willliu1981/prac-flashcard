@@ -5,19 +5,13 @@ import com.command.main.CmdBox;
 import com.controller.dao.DaoFactory;
 import com.controller.main.App;
 
-public class ChangeTableProcess extends Process {
-	public ChangeTableProcess(CmdBox cmdBox) {
-		super(cmdBox);
+public class ChangeTableProcess1 extends ChangeTableProcess {
+
+
+	public ChangeTableProcess1(ProcessFactory pFactory,Execute...es) {
+		super(pFactory);
 		// TODO Auto-generated constructor stub
 	}
-
-
-	public ChangeTableProcess(ProcessFactory pFactory, Execute... executes) {
-		super(pFactory, executes);
-		// TODO Auto-generated constructor stub
-	}
-
-
 
 	private static final String argument = "table";
 
@@ -52,7 +46,7 @@ public class ChangeTableProcess extends Process {
 	@Override
 	public int execute(String[] params, int access) {
 		if (access == 1) {
-			this.cmdBox.setDao( DaoFactory.getDao(params[0].toLowerCase()));
+			this.processFactory.setDao( DaoFactory.getDao(params[0].toLowerCase()));
 			System.out.println("table 切換為 " + App.getDaoSimpleName(params[0].toLowerCase()));
 		}
 		return access;

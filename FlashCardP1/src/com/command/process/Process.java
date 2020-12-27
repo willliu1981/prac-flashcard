@@ -10,9 +10,18 @@ import com.command.main.CmdBox;
 public abstract class Process {
 
 	protected CmdBox cmdBox;
+	protected ProcessFactory processFactory;
 	protected Execute[] executes;
 	protected Execute currentExecute;
 
+	protected Process(ProcessFactory pFactory,Execute... executes) {
+		this.processFactory=pFactory;
+		this.executes = executes;
+	}
+	protected Process(ProcessFactory pFactory) {
+		this(pFactory,null);
+	}
+	
 	protected Process(CmdBox cmdBox,Execute... executes) {
 		this.cmdBox=cmdBox;
 		this.executes = executes;
@@ -20,6 +29,8 @@ public abstract class Process {
 	protected Process(CmdBox cmdBox) {
 		this(cmdBox,null);
 	}
+	
+	protected Process() {}
 
 	protected abstract int filter(String argument, String[] params);
 
