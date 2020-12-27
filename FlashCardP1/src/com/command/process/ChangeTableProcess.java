@@ -47,11 +47,10 @@ public class ChangeTableProcess extends Process {
 	@Override
 	public int execute(String[] params, int access) {
 		if (access == 1) {
-			this.dao = DaoFactory.getDao(params[0].toLowerCase());
-			
+			this.cmdBox.setDao(DaoFactory.getDao(params[0].toLowerCase()));
 			System.out.println("table 切換為 " + App.getDaoSimpleName(params[0].toLowerCase()));
 		}
-		return 0;
+		return access;
 	}
 
 }

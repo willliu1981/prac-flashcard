@@ -36,8 +36,7 @@ public class Play {
 		CmdBox.addProcess(new AddProcess(cmdBox,new AddVocabularyExecute(),new AddCardExecute()));
 		CmdBox.addProcess(new ChangeTableProcess(cmdBox));
 		Dao<?> dao = (Dao<?>) DaoFactory.getDao(App.getDaoSimpleName("vocabulary"));
-		CmdBox.setDao(dao);
-
+		cmdBox.setDao(dao);
 		System.out.println("請輸入代碼:");
 		while (sc.hasNextLine()) {
 			String userIn = sc.nextLine();

@@ -43,7 +43,7 @@ public class AddProcess extends Process {
 	@Override
 	public void setCurrentExecute() {
 		for (Execute execute : executes) {
-			if (((ModelExecute) execute).getModelName().equalsIgnoreCase(this.dao.getType())) {
+			if (((ModelExecute) execute).getModelName().equalsIgnoreCase(this.cmdBox.getDao().getType())) {
 				this.currentExecute = execute;
 			}
 		}
@@ -52,12 +52,14 @@ public class AddProcess extends Process {
 	@Override
 	public int execute(String[] params, int access) {
 		try {
-			this.currentExecute.execute((Dao) this.dao,params);
+			if(access==1) {
+				this.currentExecute.execute((Dao) this.cmdBox.getDao(),params);
+			}
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return 0;
+		return access;
 	}
 
 }

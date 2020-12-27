@@ -15,28 +15,21 @@ public class CmdBox {
 		list.add(process);
 	}
 
-	public static void setDao(Dao<?> dao) {
-		list.forEach(p -> p.setDao(dao));
+	public Dao getDao() {
+		return this.dao;
+	}
+
+	public void setDao(Dao dao) {
+		this.dao = dao;
 	}
 
 	public static boolean executeCmd(String userIn) {
 		boolean boolResult = false;
 		for (Process p : list) {
-
 			int result = p.execute(userIn);
-			switch (result) {
-			case 0:
-				break;
-			case 1:
-				CmdBox.setDao(p.getDao());
-				break;
-			default:
+			if (result != 0) {
 				break;
 			}
-
-			boolResult = true;
-			break;
-
 		}
 
 		return boolResult;
