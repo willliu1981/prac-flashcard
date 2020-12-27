@@ -1,9 +1,18 @@
-package controller;
+package com.controller.dao;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public abstract class Dao<T> {
+	protected final String type;
+	
+	protected Dao(String type) {
+		this.type=type;
+	}
+	
+	public String getType() {
+		return this.type;
+	}
 
 	public abstract List<T> queryall() throws SQLException, ClassNotFoundException;
 

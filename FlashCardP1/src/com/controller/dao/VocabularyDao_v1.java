@@ -1,4 +1,4 @@
-package controller;
+package com.controller.dao;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -9,12 +9,17 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import conn.Conn;
-import model.Vocabulary;
+import com.controller.conn.Conn;
+import com.model.main.Vocabulary;
 
-public class VocabularyDao1 extends Dao<Vocabulary> {
+public class VocabularyDao_v1 extends VocabularyDao {
+	public VocabularyDao_v1(String type) {
+		super(type);
+		// TODO Auto-generated constructor stub
+	}
+
 	public static void main(String args[]) {
-		VocabularyDao1 dao = new VocabularyDao1();
+		VocabularyDao_v1 dao = new VocabularyDao_v1("");
 		/*
 		 * try { List<Vocabulary> list = dao.queryall(); System.out.println(list); }
 		 * catch (SQLException e) { // TODO Auto-generated catch block
@@ -38,26 +43,25 @@ public class VocabularyDao1 extends Dao<Vocabulary> {
 	@Override
 	public Vocabulary query(int id) throws ClassNotFoundException, SQLException {
 		String sql = "select * from vocabulary where id=?";
-		Vocabulary v = null;
+		Vocabulary m = null;
 		try (Connection conn = Conn.instance().getConn(); PreparedStatement st = conn.prepareStatement(sql);) {
 			st.setInt(1, id);
 			ResultSet rs = st.executeQuery();
 			if (rs.next()) {
-				v = new Vocabulary();
-				v.setId(rs.getInt("id"));
-				v.setEn_word(rs.getString("en_word"));
-				v.setCt_word(rs.getString("ct_word"));
-				v.setExam_times(rs.getInt("exam_times"));
-				v.setExam_time(rs.getDate("exam_time"));
-				v.setExam_time(rs.getDate("exam_time"));
-				v.setCreate_time(rs.getDate("create_time"));
-				v.setUpdate_time(rs.getDate("update_time"));
+				m = new Vocabulary();
+				m.setId(rs.getInt("id"));
+				m.setEn_word(rs.getString("en_word"));
+				m.setCt_word(rs.getString("ct_word"));
+				m.setExam_times(rs.getInt("exam_times"));
+				m.setExam_time(rs.getDate("exam_time"));
+				m.setCreate_time(rs.getDate("create_time"));
+				m.setUpdate_time(rs.getDate("update_time"));
 				rs.close();
 			}else {
 				System.out.println("Query failed");
 			}
 		}
-		return v;
+		return m;
 	}
 
 	@Override
@@ -80,22 +84,22 @@ public class VocabularyDao1 extends Dao<Vocabulary> {
 	@Override
 	public List<Vocabulary> queryall() throws SQLException, ClassNotFoundException {
 		String sql = "select * from vocabulary";
-		Vocabulary v = null;
+		Vocabulary m = null;
 		List<Vocabulary> list = new ArrayList<>();
 		try (Connection conn = Conn.instance().getConn();
 				Statement st = conn.createStatement();
 				ResultSet rs = st.executeQuery(sql);) {
 			while (rs.next()) {
-				v = new Vocabulary();
-				v.setId(rs.getInt("id"));
-				v.setEn_word(rs.getString("en_word"));
-				v.setCt_word(rs.getString("ct_word"));
-				v.setExam_times(rs.getInt("exam_times"));
-				v.setExam_time(rs.getDate("exam_time"));
-				v.setExam_time(rs.getDate("exam_time"));
-				v.setCreate_time(rs.getDate("create_time"));
-				v.setUpdate_time(rs.getDate("update_time"));
-				list.add(v);
+				m = new Vocabulary();
+				m.setId(rs.getInt("id"));
+				m.setEn_word(rs.getString("en_word"));
+				m.setCt_word(rs.getString("ct_word"));
+				m.setExam_times(rs.getInt("exam_times"));
+				m.setExam_time(rs.getDate("exam_time"));
+				m.setExam_time(rs.getDate("exam_time"));
+				m.setCreate_time(rs.getDate("create_time"));
+				m.setUpdate_time(rs.getDate("update_time"));
+				list.add(m);
 			}
 		}
 		if(list.isEmpty()) {

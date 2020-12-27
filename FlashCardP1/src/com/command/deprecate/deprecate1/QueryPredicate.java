@@ -1,4 +1,4 @@
-package command;
+package com.command.deprecate.deprecate1;
 
 public class QueryPredicate extends CommandPredicate {
 
