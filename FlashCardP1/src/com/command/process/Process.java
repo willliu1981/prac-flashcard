@@ -11,20 +11,27 @@ import com.command.main.CmdBox;
 import com.controller.dao.Dao;
 
 public abstract class Process {
-	protected CmdBox cmdBox;
+
+	protected Dao<?> dao;
 	protected Execute[] executes;
 	protected Execute currentExecute;
 
 	protected Process(CmdBox cmdBox,Execute... executes) {
-		this.cmdBox=cmdBox;
 		this.executes = executes;
 	}
 	protected Process(CmdBox cmdBox) {
 		this(cmdBox,null);
 	}
-	
+
 	protected abstract int filter(String argument, String[] params);
 
+	public void setDao(Dao<?> dao) {
+		this.dao = dao;
+	}
+
+	public Dao<?> getDao() {
+		return this.dao;
+	}
 
 	public int execute(String userIn) {
 		String[] userIns = userIn.split(" ");

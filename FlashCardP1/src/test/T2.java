@@ -16,14 +16,9 @@ public class T2 {
 		System.out.println(t.sc.s);
 		*///
 		
-		String userIn="a b c";
+		String userIn="a b";
 		String[] userIns = userIn.split(" ");
 		List<String> list = (List<String>) Arrays.asList(userIns);
-		list.forEach(System.out::print);
-		
-		for(String s:list) {
-			
-		}
 	}
 	
 	static void set(SC sc) {
