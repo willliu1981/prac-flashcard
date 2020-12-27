@@ -1,14 +1,7 @@
 package com.controller.main;
 
-import java.sql.SQLException;
-import java.util.List;
-import java.util.Properties;
 import java.util.Scanner;
 
-import com.command.deprecate.deprecate1.AddPredicate;
-import com.command.deprecate.deprecate1.CommandPredicate;
-import com.command.deprecate.deprecate1.QueryPredicate;
-import com.command.deprecate.deprecate1.UpdatePredicate;
 import com.command.execute.AddCardExecute;
 import com.command.execute.AddVocabularyExecute;
 import com.command.execute.QueryCardExecute;
@@ -19,9 +12,6 @@ import com.command.process.ChangeTableProcess;
 import com.command.process.QueryProcess;
 import com.controller.dao.Dao;
 import com.controller.dao.DaoFactory;
-import com.controller.dao.VocabularyDao;
-import com.google.gson.Gson;
-import com.model.main.Vocabulary;
 
 public class Play {
 	private static String help = "[query] [table id]";
@@ -36,7 +26,7 @@ public class Play {
 		CmdBox.addProcess(new AddProcess(cmdBox,new AddVocabularyExecute(),new AddCardExecute()));
 		CmdBox.addProcess(new ChangeTableProcess(cmdBox));
 		Dao<?> dao = (Dao<?>) DaoFactory.getDao(App.getDaoSimpleName("vocabulary"));
-		CmdBox.setDao(dao);
+		cmdBox.setDao(dao);
 
 		System.out.println("請輸入代碼:");
 		while (sc.hasNextLine()) {

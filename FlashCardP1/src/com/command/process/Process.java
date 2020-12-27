@@ -1,22 +1,20 @@
 package com.command.process;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import com.command.execute.Execute;
-import com.command.execute.ModelExecute;
 import com.command.main.CmdBox;
-import com.controller.dao.Dao;
 
 public abstract class Process {
 
-	protected Dao<?> dao;
+	protected CmdBox cmdBox;
 	protected Execute[] executes;
 	protected Execute currentExecute;
 
 	protected Process(CmdBox cmdBox,Execute... executes) {
+		this.cmdBox=cmdBox;
 		this.executes = executes;
 	}
 	protected Process(CmdBox cmdBox) {
@@ -24,14 +22,6 @@ public abstract class Process {
 	}
 
 	protected abstract int filter(String argument, String[] params);
-
-	public void setDao(Dao<?> dao) {
-		this.dao = dao;
-	}
-
-	public Dao<?> getDao() {
-		return this.dao;
-	}
 
 	public int execute(String userIn) {
 		String[] userIns = userIn.split(" ");
