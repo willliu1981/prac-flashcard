@@ -10,13 +10,24 @@ public class QueryCardExecute extends Execute<Card> implements ModelExecute {
 	private static final String modelName=App.getDaoSimpleName("card");
 	@Override
 	public int execute(Dao<Card> dao) throws ClassNotFoundException, SQLException {
-		dao.queryall().forEach(c-> System.out.println("%card% "+c));
+		dao.queryall().forEach(c-> System.out.println(c));
 		return 0;
 	}
 
 	@Override
 	public int execute(Dao<Card> dao,String [] datas) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
+		boolean isNumber = false;
+		int id = 0;
+		try {
+			id = Integer.valueOf(datas[0]);
+			isNumber = true;
+		} catch (NumberFormatException e) {
+		}
+		if (isNumber) {
+			System.out.println(dao.query(id));
+		}else {
+			// other logic
+		}
 		return 0;
 	}
 

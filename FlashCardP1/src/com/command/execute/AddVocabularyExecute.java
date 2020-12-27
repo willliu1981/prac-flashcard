@@ -13,8 +13,8 @@ public class AddVocabularyExecute extends Execute<Vocabulary> implements ModelEx
 	@Override
 	public int execute(Dao<Vocabulary> dao,String [] datas) throws ClassNotFoundException, SQLException {
 		Vocabulary m=new Vocabulary();
-		m.setEn_word(datas[1]);
-		m.setCt_word(datas[2]);
+		m.setEn_word(datas[0]);
+		m.setCt_word(datas[1]);
 		m.setCreate_time(new Date(new java.util.Date().getTime()));
 		dao.add(m);
 		return 0;

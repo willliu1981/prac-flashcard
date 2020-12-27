@@ -12,11 +12,10 @@ public class AddCardExecute extends Execute<Card> implements ModelExecute {
 	private static final String modelName = App.getDaoSimpleName("card");
 
 	@Override
-	public int execute(Dao<Card> dao, String[] datas) throws ClassNotFoundException, SQLException {
-		
+	public int execute(Dao<Card> dao, String[] datas) throws ClassNotFoundException, SQLException,NumberFormatException {
 		Card m = new Card();
-		m.setName(datas[1]);
-		m.setV_id(Integer.valueOf(datas[2]));
+		m.setName(datas[0]);
+		m.setV_id(Integer.valueOf(datas[1]));
 		m.setCreate_time(new Date(new java.util.Date().getTime()));
 		dao.add(m);
 		return 0;

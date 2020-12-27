@@ -29,18 +29,19 @@ public class Play {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println(help);
-
+		
+		CmdBox cmdBox=new CmdBox();
 		Scanner sc = new Scanner(System.in);
-		CmdBox.addProcess(new QueryProcess(new QueryVocabularyExecute(),new QueryCardExecute()));
-		CmdBox.addProcess(new AddProcess(new AddVocabularyExecute(),new AddCardExecute()));
-		CmdBox.addProcess(new ChangeTableProcess());
+		CmdBox.addProcess(new QueryProcess(cmdBox,new QueryVocabularyExecute(),new QueryCardExecute()));
+		CmdBox.addProcess(new AddProcess(cmdBox,new AddVocabularyExecute(),new AddCardExecute()));
+		CmdBox.addProcess(new ChangeTableProcess(cmdBox));
 		Dao<?> dao = (Dao<?>) DaoFactory.getDao(App.getDaoSimpleName("vocabulary"));
 		CmdBox.setDao(dao);
 
 		System.out.println("請輸入代碼:");
 		while (sc.hasNextLine()) {
-			String line = sc.nextLine();
-			CmdBox.executeCmd(line);
+			String userIn = sc.nextLine();
+			CmdBox.executeCmd(userIn);
 			System.out.println("請輸入代碼:");
 		}
 
