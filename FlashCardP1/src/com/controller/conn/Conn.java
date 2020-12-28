@@ -14,7 +14,7 @@ public class Conn {
 	static private Conn conn=new Conn();
 	static {
 		try {
-			conn.init(App.getBasePath()+"mysql.ini");
+			conn.init(App.getDatabaseInit());
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

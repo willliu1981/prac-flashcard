@@ -34,4 +34,8 @@ public class App {
 	public static String getDaoSimpleName(String name) {
 		return props.getProperty(name.toLowerCase()+"-name");
 	}
+	
+	public static String getDatabaseInit() {
+		return App.getBasePath()+"\\"+ props.getProperty("database")+".ini";
+	}
 }
