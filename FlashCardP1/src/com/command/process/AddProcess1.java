@@ -3,7 +3,7 @@ package com.command.process;
 import java.sql.SQLException;
 
 import com.command.execute.Execute;
-import com.command.execute.ModelExecute;
+import com.command.execute.IModelExecute;
 import com.command.main.CmdBox;
 import com.controller.dao.Dao;
 
@@ -15,19 +15,14 @@ public class AddProcess1 extends AddProcess {
 		// TODO Auto-generated constructor stub
 	}
 
-
-
 	@Override
 	protected int filter(String argument, String[] params) {
 		int access = 0;
-		if (!(argument == "")) {
-			if (this.argument.equalsIgnoreCase(argument)) {
-				this.setCurrentExecute();
-				if (params.length >= 1) {
-					access = 1;
-				} else {
-					System.out.println("指令錯誤: "+this.currentExecute.getTip());
-				}
+		if (this.argument.equalsIgnoreCase(argument)) {
+			if (params.length >= 1) {
+				access = 1;
+			} else {
+				access = -1;
 			}
 		}
 		return access;
@@ -40,25 +35,32 @@ public class AddProcess1 extends AddProcess {
 	}
 
 	@Override
-	public void setCurrentExecute() {
+	public Execute setCurrentExecute() {
 		for (Execute execute : executes) {
-			if (((ModelExecute) execute).getModelName().equalsIgnoreCase(this.processFactory.getDao().getType())) {
-				this.currentExecute = execute;
+			if (((IModelExecute) execute).getModelName().equalsIgnoreCase(this.processFactory.getDao().getType())) {
+				return execute;
 			}
 		}
+		return null;
 	}
 
 	@Override
-	public int execute(String[] params, int access) {
+	public int execute(Execute currExecute, String[] params, int access) {
 		try {
-			if(access==1) {
-				this.currentExecute.execute((Dao) this.processFactory.getDao(),params);
+			if (access == 1) {
+				((IModelExecute) currExecute).execute(ProcessFactory.getDao(), access, params);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return access;
+	}
+
+	@Override
+	protected String setErrorTip() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

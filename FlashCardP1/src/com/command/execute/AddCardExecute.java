@@ -8,11 +8,17 @@ import com.controller.main.App;
 import com.model.main.Card;
 import com.model.main.Vocabulary;
 
-public class AddCardExecute extends Execute<Card> implements ModelExecute {
+public class AddCardExecute extends Execute<Card> implements IModelExecute {
 	private static final String modelName = App.getDaoSimpleName("card");
 
 	@Override
-	public int execute(Dao<Card> dao, String[] datas) throws ClassNotFoundException, SQLException,NumberFormatException {
+	public String getModelName() {
+		// TODO Auto-generated method stub
+		return modelName;
+	}
+
+	@Override
+	public int execute(Dao dao, int accessCode, String[] datas) throws ClassNotFoundException, SQLException {
 		Card m = new Card();
 		m.setName(datas[0]);
 		m.setV_id(Integer.valueOf(datas[1]));
@@ -22,15 +28,9 @@ public class AddCardExecute extends Execute<Card> implements ModelExecute {
 	}
 
 	@Override
-	public int execute(Dao<Card> dao) throws ClassNotFoundException, SQLException {
+	public int execute(int accessCode) {
 		// TODO Auto-generated method stub
 		return 0;
-	}
-
-	@Override
-	public String getModelName() {
-		// TODO Auto-generated method stub
-		return modelName;
 	}
 
 }

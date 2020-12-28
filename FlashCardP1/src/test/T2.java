@@ -5,6 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class T2 {
 	
@@ -23,7 +24,7 @@ public class T2 {
 		List<String> list = (List<String>) Arrays.asList(userIns);
 		*///
 		
-		//*
+		/*
 		try {
 			Class<?> c =Class.forName("test.T2$TestC");
 			
@@ -40,7 +41,9 @@ public class T2 {
 		SC [] scs=new SC[]{new SC(),new SC(),new SC()};
 //		TestC tc=new TestC(new A(),new SC(),new SC());
 		//TestC tc=new TestC(new A(),scs);
-		///
+		*///
+		String a=null;
+		System.out.println(Objects.requireNonNull(a, "xxxx"));
 		
 	}
 
@@ -49,6 +52,8 @@ public class T2 {
 		sc=new SC();
 		sc.s="b";
 	}
+	
+
 	
 	static class SC{
 		public String s="sc";

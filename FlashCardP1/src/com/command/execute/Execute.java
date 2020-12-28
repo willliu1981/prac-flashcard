@@ -5,12 +5,10 @@ import java.sql.SQLException;
 import com.controller.dao.Dao;
 
 public abstract class Execute<T> {
-	public abstract int execute(Dao<T> dao) throws ClassNotFoundException, SQLException;
-
-	public abstract int execute(Dao<T> dao, String[] datas) throws ClassNotFoundException, SQLException;
+	public abstract int execute( int accessCode) ;
 
 	public String getTip() {
-		return "指令錯誤!";
+		return "未知錯誤";
 	}
 
 }
