@@ -5,11 +5,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
+//取得config 設定檔 和初始化狀態設定
 public class App {
 	private static Properties props=new Properties();
-	static {
+	
+	public static void LoadConfig(String config) {
 		try {
-			props.load(new FileInputStream("resource\\config.cfg"));
+			props.load(new FileInputStream(config));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

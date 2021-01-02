@@ -32,4 +32,10 @@ public class AddVocabularyExecute extends Execute<Vocabulary> implements IModelE
 		return 0;
 	}
 
+	@Override
+	public int execute(int accessCode, String[] datas) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

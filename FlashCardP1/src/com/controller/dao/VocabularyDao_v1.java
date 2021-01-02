@@ -13,33 +13,12 @@ import com.controller.conn.Conn;
 import com.model.main.Vocabulary;
 
 public class VocabularyDao_v1 extends VocabularyDao {
+	//設type 用於取得currExecute ,實作於 DataProcess 的 setCurrExecute()
 	public VocabularyDao_v1(String type) {
 		super(type);
-		// TODO Auto-generated constructor stub
 	}
 
-	public static void main(String args[]) {
-		VocabularyDao_v1 dao = new VocabularyDao_v1("");
-		/*
-		 * try { List<Vocabulary> list = dao.queryall(); System.out.println(list); }
-		 * catch (SQLException e) { // TODO Auto-generated catch block
-		 * e.printStackTrace(); }
-		 *///
-		
-		/*
-		Vocabulary v = new Vocabulary();
-		v.setEn_word("apple");
-		v.setCt_word("蘋果");
-		v.setCreate_time(new Date(new java.util.Date().getTime()));
-		try {
-			dao.add(v);
-		} catch (SQLException | ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		*///
-	}
-
+	
 	@Override
 	public Vocabulary query(int id) throws ClassNotFoundException, SQLException {
 		String sql = "select * from vocabulary where id=?";

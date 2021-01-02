@@ -28,7 +28,7 @@ public class ChangeTableProcess1 extends ChangeTableProcess {
 	}
 
 	@Override
-	public String getArgument() {
+	public String getArgumentType() {
 		// TODO Auto-generated method stub
 		return this.argument;
 	}

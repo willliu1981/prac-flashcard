@@ -1,10 +1,11 @@
-package com.command.process;
+package com.command.process.deprecate;
 
 import java.sql.SQLException;
 
 import com.command.execute.Execute;
 import com.command.execute.IModelExecute;
 import com.command.main.CmdBox;
+import com.command.process.ProcessFactory;
 import com.controller.dao.Dao;
 
 public class AddProcess1 extends AddProcess {
@@ -29,7 +30,7 @@ public class AddProcess1 extends AddProcess {
 	}
 
 	@Override
-	public String getArgument() {
+	public String getArgumentType() {
 		// TODO Auto-generated method stub
 		return argument;
 	}

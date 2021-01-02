@@ -5,6 +5,8 @@ import java.sql.Date;
 
 import com.google.gson.Gson;
 
+
+
 public abstract class Model implements Serializable {
 	/**
 	 * 

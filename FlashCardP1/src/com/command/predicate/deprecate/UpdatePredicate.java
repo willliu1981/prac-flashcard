@@ -1,4 +1,4 @@
-package com.command.deprecate.deprecate1;
+package com.command.predicate.deprecate;
 
 public class UpdatePredicate extends CommandPredicate {
 

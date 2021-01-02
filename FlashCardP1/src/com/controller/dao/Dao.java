@@ -14,13 +14,18 @@ public abstract class Dao<T> {
 		return this.type;
 	}
 
+	//CRUD 的read
 	public abstract List<T> queryall() throws SQLException, ClassNotFoundException;
 
+	//CRUD 的read
 	public abstract T query(int id) throws ClassNotFoundException, SQLException;
-
+	
+	//CRUD 的Create
 	public abstract void add(T t) throws SQLException, ClassNotFoundException;
 
+	//CRUD 的Update
 	public abstract void update(T t, int id) throws SQLException, ClassNotFoundException;
 
+	//CRUD 的Delete
 	public abstract void delete(int id) throws SQLException, ClassNotFoundException;
 }

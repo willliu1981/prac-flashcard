@@ -6,32 +6,35 @@ import com.command.execute.AddVocabularyExecute;
 import com.command.execute.QueryCardExecute;
 import com.command.execute.QueryVocabularyExecute;
 import com.command.main.CmdBox;
-import com.command.process.AddProcess;
-import com.command.process.ChangeTableProcess;
+import com.command.process.MenuProcess;
 import com.command.process.ProcessFactory;
-import com.command.process.QueryProcess1;
 import com.controller.dao.DaoFactory;
-import com.command.process.Process;
+import com.controller.main.App;
 
 public class Play {
-	private static String help = "[query] [table id]";
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println(help);
+		App.LoadConfig("resource\\config\\config.cfg");
 
 		Scanner sc = new Scanner(System.in);
-		ProcessFactory.setDao(DaoFactory.getDao("vocabulary"));
-		ProcessFactory queryFactory = ProcessFactory.getFactory("query", new QueryVocabularyExecute(),
+		ProcessFactory.setDao(DaoFactory.getDao("vocabulary"));//預設Dao
+		//設置指令
+		ProcessFactory exitFactory = ProcessFactory.getFactory("menu", MenuProcess.Exit);
+		ProcessFactory testexitFactory = ProcessFactory.getFactory("menu", MenuProcess.Help);
+		ProcessFactory queryFactory = ProcessFactory.getFactory("data", "query", new QueryVocabularyExecute(),
 				new QueryCardExecute());
-		ProcessFactory addFactory = ProcessFactory.getFactory("add", new AddVocabularyExecute(), new AddCardExecute());
-		ProcessFactory tableFactory = ProcessFactory.getFactory("table");
+		ProcessFactory addFactory = ProcessFactory.getFactory("data", "add", new AddVocabularyExecute(),
+				new AddCardExecute());
+		ProcessFactory tableFactory = ProcessFactory.getFactory("data", "table");
 
 		CmdBox.addProcess(queryFactory);
 		CmdBox.addProcess(addFactory);
 		CmdBox.addProcess(tableFactory);
+		CmdBox.addProcess(exitFactory);
+		CmdBox.addProcess(testexitFactory);
 
-		System.out.println("請輸入代碼:");
+		//程式開始
+		System.out.println("請輸入代碼: (輸入help取得說明)");
 		while (sc.hasNextLine()) {
 			String userIn = sc.nextLine();
 			CmdBox.executeCmd(userIn);

@@ -7,13 +7,13 @@ import com.controller.main.App;
 
 public abstract class ChangeTableProcess extends Process {
 	public ChangeTableProcess(CmdBox cmdBox) {
-		super(cmdBox);
+		//super(cmdBox);
 		// TODO Auto-generated constructor stub
 	}
 
 
 	public ChangeTableProcess(ProcessFactory pFactory, Execute... executes) {
-		super(pFactory, executes);
+		//super(pFactory, executes);
 		// TODO Auto-generated constructor stub
 	}
 

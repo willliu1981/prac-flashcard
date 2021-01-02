@@ -12,6 +12,7 @@ import com.controller.main.App;
 
 public class Conn {
 	static private Conn conn=new Conn();
+	//初始化連線相關資料
 	static {
 		try {
 			conn.init(App.getDatabaseInit());
@@ -35,23 +36,14 @@ public class Conn {
 		return conn;
 	}
 	
-	public static void main(String[] args) throws Exception{
-		// TODO Auto-generated method stub
-		Conn conn= new Conn();
-		conn.init("resource\\mysql.ini");
-		System.out.println("test:"+conn.driver);
-		conn.getConn();
-		
-	}
 	
 	public Connection getConn() throws SQLException, ClassNotFoundException {
 		Class.forName(driver);
 		Connection conn=DriverManager.getConnection(url, user, password);
-		//System.out.println("Connect successfully");
 		return conn;
 	}
 	
-	
+	//初始化連線相關資料
 	public void init(String setting) throws FileNotFoundException, IOException {
 		Properties props=new Properties();
 		props.load(new FileInputStream(setting));
