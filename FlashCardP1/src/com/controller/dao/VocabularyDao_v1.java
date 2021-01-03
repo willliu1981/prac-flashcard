@@ -10,9 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.controller.conn.Conn;
+import com.controller.dao.deprecate.VocabularyDao;
 import com.model.main.Vocabulary;
 
-public class VocabularyDao_v1 extends VocabularyDao {
+public class VocabularyDao_v1 extends SqlDao<Vocabulary> {
 	//設type 用於取得currExecute ,實作於 DataProcess 的 setCurrExecute()
 	public VocabularyDao_v1(String type) {
 		super(type);

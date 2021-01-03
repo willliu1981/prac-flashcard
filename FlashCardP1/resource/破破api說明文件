@@ -8,13 +8,15 @@ CmdBox 遍歷processList 呼叫Process的 execute 方法
 若有下一步,就運行Execute類別的execute方法
 詳細程式註解: Process的說明以DataProcess為例 ,Execute的說明以QueryVocabularyExecute為例
 
-App 類,是取得config的設定檔,相關的名字和路徑, config的位置在 resource\config文件底下
+App 類, 用於取得config的設定檔、相關的名字和路徑.  config的位置在 resource\config文件底下
 	config結構:
-		basepath 為 config 的位置, 所有其它App取得的類別路徑皆依賴 basepath 的正確路徑
-		database 為 選擇資料庫名稱, 名稱定義與config 文件下的資料庫.ini 相同 ,用於取得資料庫相關資訊, 實作於 Conn類別(App.getDatabaseInit())
+		basepath 為 config 的位置, database及其它第三方資源路徑皆依賴 basepath 的正確路徑
+		database 為 選擇資料庫名稱, 名稱定義與config 文件下的 xxx.ini 檔名相同 ,用於取得資料庫相關資訊, 實作於 Conn類別(App.getDatabaseInit())
 		xxx-name 應小寫,為Dao識別名稱, 實作於 DaoFactory類別(App.getDaoSimpleName(name)), 這個用法可能是多餘的或有問題的,待修改
 		xxx-dao 應小寫,為 取得dao路徑, 實作於 DaoFactory類別(App.getDaoClassPath(name))
 		xxx-process 應小寫,為 取得process路徑,實作於 ProcessFactory類別(App.getProcessClassPath(name))
+	
+	App 的 loadConfig(path) 應於set Porcess 前呼叫
 
 ps.resouce 有2個文件: config 和 sqlitedb ,sqlitdb 為 sqlite 資料庫的位置
 
@@ -28,5 +30,8 @@ ps.resouce 有2個文件: config 和 sqlitedb ,sqlitdb 為 sqlite 資料庫的�
 
 
 
-ps. 暫時保留用法表示後面版本中可能會拿掉
-	package為predicate 為不再適用的程式
+ps.
+.	"暫時保留用法" 表示後面版本中可能會拿掉
+.	package為deprecate ,為不再適用的程式
+	
+	

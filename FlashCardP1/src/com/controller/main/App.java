@@ -9,9 +9,10 @@ import java.util.Properties;
 public class App {
 	private static Properties props=new Properties();
 	
-	public static void LoadConfig(String config) {
+	//於set Process 前,最優先進行的方法, 例如:實作於Play類別
+	public static void loadConfig(String configPath) {
 		try {
-			props.load(new FileInputStream(config));
+			props.load(new FileInputStream(configPath));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -37,7 +38,7 @@ public class App {
 		return props.getProperty(name.toLowerCase()+"-name");
 	}
 	
-	public static String getDatabaseInit() {
-		return App.getBasePath()+"\\"+ props.getProperty("database")+".ini";
+	public static String getDatabaseInitPath() {
+		return App.getBasePath()+"\\"+ props.getProperty("database");
 	}
 }

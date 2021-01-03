@@ -9,10 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.controller.conn.Conn;
+import com.controller.dao.deprecate.CardDao;
 import com.model.main.Card;
 import com.model.main.Vocabulary;
 
-public class CardDao_v1 extends CardDao {
+public class CardDao_v1 extends SqlDao<Card> {
 
 	public CardDao_v1(String type) {
 		super(type);

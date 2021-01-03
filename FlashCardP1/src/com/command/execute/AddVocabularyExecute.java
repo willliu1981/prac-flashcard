@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 
 import com.controller.dao.Dao;
+import com.controller.dao.SqlDao;
 import com.controller.main.App;
 import com.model.main.Vocabulary;
 
@@ -17,12 +18,14 @@ public class AddVocabularyExecute extends Execute<Vocabulary> implements IModelE
 	}
 
 	@Override
-	public int execute(Dao dao, int accessCode, String[] datas) throws ClassNotFoundException, SQLException {
-		Vocabulary m = new Vocabulary();
-		m.setEn_word(datas[0]);
-		m.setCt_word(datas[1]);
-		m.setCreate_time(new Date(new java.util.Date().getTime()));
-		dao.add(m);
+	public int execute(Dao dao, int access, String[] datas) throws ClassNotFoundException, SQLException {
+		if (access == 1) {
+			Vocabulary m = new Vocabulary();
+			m.setEn_word(datas[0]);
+			m.setCt_word(datas[1]);
+			m.setCreate_time(new Date(new java.util.Date().getTime()));
+			((SqlDao) dao).add(m);
+		}
 		return 0;
 	}
 

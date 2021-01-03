@@ -11,6 +11,9 @@ public abstract class Process {
 	protected String argument;
 	protected ProcessFactory processFactory;
 	protected Execute[] executes;
+	public static final int MORE = 1;
+	public static final int EQUAL = 0;
+	public static final int LESS = -1;
 
 	protected Process() {
 	}
@@ -42,12 +45,12 @@ public abstract class Process {
 		if (access != 0) {
 			currExecute = this.setCurrentExecute();
 		} else {
-			return execResult;//目前意義同 access 值(為0),暫時保留用法
+			return execResult;// 目前意義同 access 值(為0),暫時保留用法
 		}
-		//取得錯誤說明
+		// 取得錯誤說明
 		if (access == -1) {
 			String tip = setErrorTip();
-			//覆寫錯誤回應訊息
+			// 覆寫錯誤回應訊息
 			if (currExecute != null) {
 				tip = currExecute.getTip();
 			}
@@ -58,15 +61,65 @@ public abstract class Process {
 
 	protected abstract int execute(Execute currExecute, String[] params, int access);
 
-	//於舊版本,暫時保留用法
+	// 於舊版本,暫時保留用法
 	protected String getArgumentType() {
 		return null;
 	}
 
 	protected abstract Execute<?> setCurrentExecute();
 
-	//預設錯誤回應的訊息
+	// 預設錯誤回應的訊息
 	protected String setErrorTip() {
 		return "未知";
+	}
+
+	//自訂驗證規則
+	protected static class PredicateParameter {
+		private int access;
+		private final int defaultAccess;
+		
+		protected PredicateParameter() {
+			this.defaultAccess=-1;//預設為-1
+		}
+		
+		protected PredicateParameter(int defaultAccess) {
+			this.defaultAccess=defaultAccess;//指定預設值
+		}
+
+		/*自訂規則,參數 parameters 是傳入的使用者parameters 
+						condition 是比較子 , 值域 -1~1
+						compareTo 比較的對象 
+						access 比較成立時則設置為 access
+		*///
+		protected PredicateParameter predicate(String[] parameters, int condition, int compareTo, int access) {
+			switch (condition) {
+			case MORE:
+				if (parameters.length > compareTo) {
+					this.access=access;
+				}
+				break;
+			case EQUAL:
+				if (parameters.length == compareTo) {
+					this.access=access;
+				}
+				break;
+			case LESS:
+				if (parameters.length < compareTo) {
+					this.access=access;
+				}
+				break;
+			default:
+				this.access=defaultAccess;
+				break;
+			}
+			return this;
+		}
+		
+		protected int getResult() {
+			return this.access;
+		}
+		
+
+
 	}
 }

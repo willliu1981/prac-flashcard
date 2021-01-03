@@ -7,6 +7,7 @@ import com.command.execute.IModelExecute;
 import com.command.main.CmdBox;
 import com.command.process.ProcessFactory;
 import com.controller.dao.Dao;
+import com.controller.dao.SqlDao;
 
 public class AddProcess1 extends AddProcess {
 	private static final String argument = "add";
@@ -38,7 +39,7 @@ public class AddProcess1 extends AddProcess {
 	@Override
 	public Execute setCurrentExecute() {
 		for (Execute execute : executes) {
-			if (((IModelExecute) execute).getModelName().equalsIgnoreCase(this.processFactory.getDao().getType())) {
+			if (((IModelExecute) execute).getModelName().equalsIgnoreCase(((SqlDao)this.processFactory.getDao()).getType())) {
 				return execute;
 			}
 		}

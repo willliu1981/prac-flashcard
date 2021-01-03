@@ -6,7 +6,6 @@ import com.command.execute.IModelExecute;
 //處理主選單的Process
 public class MenuProcess1 extends MenuProcess {
 
-
 	public MenuProcess1() {
 		super();
 	}
@@ -16,14 +15,12 @@ public class MenuProcess1 extends MenuProcess {
 		return null;
 	}
 
-	@Override  
+	@Override
 	protected int filter(String argument, String[] params) {
 		int access = 0;
 		if (this.argument.equalsIgnoreCase(argument)) {
 			if (params.length == 0) {
 				access = 1;
-			} else if (params.length == 1) {
-				access = 2;
 			} else {
 				access = -1;
 			}
@@ -46,7 +43,5 @@ public class MenuProcess1 extends MenuProcess {
 		}
 		return access;
 	}
-
-
 
 }

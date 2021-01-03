@@ -3,6 +3,7 @@ package com.command.execute;
 import java.sql.SQLException;
 
 import com.controller.dao.Dao;
+import com.controller.dao.SqlDao;
 import com.controller.main.App;
 import com.model.main.Vocabulary;
 
@@ -16,10 +17,10 @@ public class QueryVocabularyExecute extends Execute<Vocabulary> implements IMode
 	}
 
 	@Override
-	public int execute(Dao dao, int accessCode, String[] datas) throws ClassNotFoundException, SQLException {
-		if (accessCode == 1) {
-			dao.queryall().forEach(System.out::println);
-		} else if (accessCode == 2) {
+	public int execute(Dao dao, int access, String[] datas) throws ClassNotFoundException, SQLException {
+		if (access == 1) {
+			((SqlDao)dao).queryall().forEach(System.out::println);
+		} else if (access == 2) {
 			boolean isNumber = false;
 			int id = 0;
 			try {
@@ -28,7 +29,7 @@ public class QueryVocabularyExecute extends Execute<Vocabulary> implements IMode
 			} catch (NumberFormatException e) {
 			}
 			if (isNumber) {
-				System.out.println(dao.query(id));
+				System.out.println(((SqlDao)dao).query(id));
 			} else {
 				// other logic
 			}

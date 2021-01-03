@@ -15,7 +15,7 @@ public class Conn {
 	//初始化連線相關資料
 	static {
 		try {
-			conn.init(App.getDatabaseInit());
+			conn.init(App.getDatabaseInitPath());
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -44,9 +44,9 @@ public class Conn {
 	}
 	
 	//初始化連線相關資料
-	public void init(String setting) throws FileNotFoundException, IOException {
+	public void init(String settingPath) throws FileNotFoundException, IOException {
 		Properties props=new Properties();
-		props.load(new FileInputStream(setting));
+		props.load(new FileInputStream(settingPath));
 		driver=props.getProperty("driver");
 		url=props.getProperty("url");
 		user=props.getProperty("user");
