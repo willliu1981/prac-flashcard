@@ -6,11 +6,12 @@ import java.sql.SQLException;
 import com.controller.dao.Dao;
 import com.controller.dao.Dao;
 import com.controller.main.App;
+import com.model.main.Box;
 import com.model.main.Card;
 import com.model.main.Vocabulary;
 
-public class AddCardExecute extends Execute<Card> implements IModelExecute {
-	private static final String modelName = App.getDaoSimpleName("card");
+public class AddBoxExecute extends Execute<Box> implements IModelExecute {
+	private static final String modelName = App.getDaoSimpleName("box");
 
 	@Override
 	public String getModelName() {
@@ -20,10 +21,10 @@ public class AddCardExecute extends Execute<Card> implements IModelExecute {
 
 	@Override
 	public int execute(Dao dao, int access, String[] datas) throws ClassNotFoundException, SQLException {
-		Card m = new Card();
+		Box m = new Box();
 		m.setName(datas[0]);
-		m.setV_id(Integer.valueOf(datas[1]));
-		((Dao)dao).add(m);
+		m.setDescribe(datas[1]);
+		((Dao) dao).add(m);
 		return 0;
 	}
 

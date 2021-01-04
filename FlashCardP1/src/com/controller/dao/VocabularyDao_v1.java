@@ -13,8 +13,9 @@ import com.controller.conn.Conn;
 import com.controller.dao.deprecate.VocabularyDao;
 import com.model.main.Vocabulary;
 
-public class VocabularyDao_v1 extends SqlDao<Vocabulary> {
+public class VocabularyDao_v1 extends Dao<Vocabulary> {
 	//設type 用於取得currExecute ,實作於 DataProcess 的 setCurrExecute()
+	//修飾詞必需要public, 否則 DaoFactory 會無法建立物件
 	public VocabularyDao_v1(String type) {
 		super(type);
 	}
@@ -50,7 +51,7 @@ public class VocabularyDao_v1 extends SqlDao<Vocabulary> {
 		try (Connection conn = Conn.instance().getConn(); PreparedStatement st = conn.prepareStatement(sql);) {
 			st.setString(1, t.getEn_word());
 			st.setString(2, t.getCt_word());
-			st.setDate(3, t.getCreate_time());
+			st.setDate(3, new Date(new java.util.Date().getTime()));
 			int count = st.executeUpdate();
 			if (count == 0) {
 				System.out.println("Add failed");
@@ -62,7 +63,7 @@ public class VocabularyDao_v1 extends SqlDao<Vocabulary> {
 	}
 
 	@Override
-	public List<Vocabulary> queryall() throws SQLException, ClassNotFoundException {
+	public List<Vocabulary> queryAll() throws SQLException, ClassNotFoundException {
 		String sql = "select * from vocabulary";
 		Vocabulary m = null;
 		List<Vocabulary> list = new ArrayList<>();
@@ -75,7 +76,6 @@ public class VocabularyDao_v1 extends SqlDao<Vocabulary> {
 				m.setEn_word(rs.getString("en_word"));
 				m.setCt_word(rs.getString("ct_word"));
 				m.setExam_times(rs.getInt("exam_times"));
-				m.setExam_time(rs.getDate("exam_time"));
 				m.setExam_time(rs.getDate("exam_time"));
 				m.setCreate_time(rs.getDate("create_time"));
 				m.setUpdate_time(rs.getDate("update_time"));
@@ -94,7 +94,7 @@ public class VocabularyDao_v1 extends SqlDao<Vocabulary> {
 		try (Connection conn = Conn.instance().getConn(); PreparedStatement st = conn.prepareStatement(sql);) {
 			st.setString(1, t.getEn_word());
 			st.setString(2, t.getCt_word());
-			st.setDate(3, t.getUpdate_time());
+			st.setDate(3, new Date(new java.util.Date().getTime()));
 			st.setInt(4, id);
 			int count = st.executeUpdate();
 			if (count == 0) {

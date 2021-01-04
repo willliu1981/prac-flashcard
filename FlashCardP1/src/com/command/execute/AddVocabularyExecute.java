@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 
 import com.controller.dao.Dao;
-import com.controller.dao.SqlDao;
+import com.controller.dao.Dao;
 import com.controller.main.App;
 import com.model.main.Vocabulary;
 
@@ -23,8 +23,7 @@ public class AddVocabularyExecute extends Execute<Vocabulary> implements IModelE
 			Vocabulary m = new Vocabulary();
 			m.setEn_word(datas[0]);
 			m.setCt_word(datas[1]);
-			m.setCreate_time(new Date(new java.util.Date().getTime()));
-			((SqlDao) dao).add(m);
+			((Dao) dao).add(m);
 		}
 		return 0;
 	}

@@ -6,7 +6,7 @@ import com.command.execute.Execute;
 import com.command.execute.IModelExecute;
 import com.command.process.deprecate.QueryProcess;
 import com.controller.dao.DaoFactory;
-import com.controller.dao.SqlDao;
+import com.controller.dao.Dao;
 import com.controller.main.App;
 
 //處理CRUD的Process
@@ -15,13 +15,13 @@ public class DataProcess1 extends DataProcess {
 	public DataProcess1() {
 		super();
 	}
-
+	
 	@Override
 	public Execute setCurrentExecute() {
 		// 取得對應Model的Execute實體
 		for (Execute execute : this.executes) {
 			if (((IModelExecute) execute).getModelName()
-					.equalsIgnoreCase(((SqlDao) this.processFactory.getDao()).getType())) {
+					.equalsIgnoreCase(((Dao) this.processFactory.getDao()).getType())) {
 				return execute;
 			}
 		}

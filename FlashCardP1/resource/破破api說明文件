@@ -25,13 +25,10 @@ ps.resouce 有2個文件: config 和 sqlitedb ,sqlitdb 為 sqlite 資料庫的�
 
 
 
-
-
-
-
-
 ps.
 .	"暫時保留用法" 表示後面版本中可能會拿掉
 .	package為deprecate ,為不再適用的程式
 	
+	
+[補充] 因為考期將至, 這個api 暫時先停住了, 年後才有可能會繼續更新
 	

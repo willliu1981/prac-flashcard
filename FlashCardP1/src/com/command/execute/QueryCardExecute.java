@@ -3,7 +3,7 @@ package com.command.execute;
 import java.sql.SQLException;
 
 import com.controller.dao.Dao;
-import com.controller.dao.SqlDao;
+import com.controller.dao.Dao;
 import com.controller.main.App;
 import com.model.main.Card;
 
@@ -19,7 +19,7 @@ public class QueryCardExecute extends Execute<Card> implements IModelExecute {
 	@Override
 	public int execute(Dao dao, int accessCode, String[] datas) throws ClassNotFoundException, SQLException {
 		if (accessCode == 1) {
-			((SqlDao)dao).queryall().forEach(System.out::println);
+			((Dao)dao).queryAll().forEach(System.out::println);
 		} else if (accessCode == 2) {
 			boolean isNumber = false;
 			int id = 0;
@@ -29,7 +29,7 @@ public class QueryCardExecute extends Execute<Card> implements IModelExecute {
 			} catch (NumberFormatException e) {
 			}
 			if (isNumber) {
-				System.out.println(((SqlDao)dao).query(id));
+				System.out.println(((Dao)dao).query(id));
 			} else {
 				// other logic
 			}

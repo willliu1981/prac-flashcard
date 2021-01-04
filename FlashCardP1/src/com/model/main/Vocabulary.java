@@ -9,10 +9,14 @@ public class Vocabulary extends Model {
 	 * 
 	 */
 	private static final long serialVersionUID = 8459553598843948942L;
+	private Integer id;
 	private String en_word;
 	private String ct_word;
+	private String describe;
 	private Integer exam_times;
 	private Date exam_time;
+	private Date create_time;
+	private Date update_time;
 
 	
 	public void setValues(String en,String ct) {
@@ -47,11 +51,43 @@ public class Vocabulary extends Model {
 	}
 
 
-	public String toString() {
-		/*
-		return String .format("ID=%d , en=%s , ct=%s , ex-time=%s , times=%d , create-time=%s , update-time=%s",
-				this.id,this.en_word,this.ct_word,this.exam_time,this.exam_times,this.create_time,this.update_time);
-		*///
-		return super.toString();
+	public Integer getId() {
+		return id;
 	}
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+	public String getDescribe() {
+		return describe;
+	}
+
+
+	public void setDescribe(String describe) {
+		this.describe = describe;
+	}
+
+
+	public Date getCreate_time() {
+		return create_time;
+	}
+
+
+	public void setCreate_time(Date create_time) {
+		this.create_time = create_time;
+	}
+
+
+	public Date getUpdate_time() {
+		return update_time;
+	}
+
+
+	public void setUpdate_time(Date update_time) {
+		this.update_time = update_time;
+	}
+
 }

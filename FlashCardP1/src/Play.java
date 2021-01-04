@@ -1,9 +1,12 @@
 
 import java.util.Scanner;
 
+import com.command.execute.AddBoxExecute;
 import com.command.execute.AddCardExecute;
 import com.command.execute.AddVocabularyExecute;
+import com.command.execute.QueryBoxExecute;
 import com.command.execute.QueryCardExecute;
+import com.command.execute.QueryExamExecute;
 import com.command.execute.QueryVocabularyExecute;
 import com.command.main.CmdBox;
 import com.command.process.DataProcess;
@@ -26,14 +29,14 @@ public class Play {
 		ProcessFactory exitFactory = ProcessFactory.getFactory("menu", MenuProcess.Exit);
 		ProcessFactory testexitFactory = ProcessFactory.getFactory("menu", MenuProcess.Help);
 		ProcessFactory queryFactory = ProcessFactory.getFactory("data", DataProcess.Query, new QueryVocabularyExecute(),
-				new QueryCardExecute());
+				new QueryCardExecute(),new QueryBoxExecute(),new QueryExamExecute());
 		ProcessFactory addFactory = ProcessFactory.getFactory("data", DataProcess.Add, new AddVocabularyExecute(),
-				new AddCardExecute());
-		ProcessFactory tableFactory = ProcessFactory.getFactory("data", DataProcess.Table);
+				new AddCardExecute(),new AddBoxExecute());
+		ProcessFactory cnangeTableFactory = ProcessFactory.getFactory("data", DataProcess.Table);
 
 		CmdBox.addProcess(queryFactory);
 		CmdBox.addProcess(addFactory);
-		CmdBox.addProcess(tableFactory);
+		CmdBox.addProcess(cnangeTableFactory);
 		CmdBox.addProcess(exitFactory);
 		CmdBox.addProcess(testexitFactory);
 
