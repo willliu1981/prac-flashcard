@@ -1,6 +1,7 @@
 package com.command.execute;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import com.controller.dao.Dao;
 import com.controller.dao.Dao;
@@ -19,7 +20,8 @@ public class QueryVocabularyExecute extends Execute<Vocabulary> implements IMode
 	@Override
 	public int execute(Dao dao, int access, String[] datas) throws ClassNotFoundException, SQLException {
 		if (access == 1) {
-			((Dao) dao).queryAll().forEach(System.out::println);
+			currentResult=((Dao) dao).queryAll();
+			currentResult.forEach(System.out::println);
 		} else if (access == 2) {
 			boolean isNumber = false;
 			int id = 0;

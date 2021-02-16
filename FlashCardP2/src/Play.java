@@ -14,6 +14,7 @@ import com.command.process.MenuProcess;
 import com.command.process.ProcessFactory;
 import com.controller.dao.DaoFactory;
 import com.controller.main.App;
+import com.view.main.MainFrame;
 
 public class Play {
 
@@ -40,6 +41,18 @@ public class Play {
 		CmdBox.addProcess(exitFactory);
 		CmdBox.addProcess(testexitFactory);
 
+		//view
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				MainFrame view=new MainFrame();
+				view.setVisible(true);
+			}
+			
+		}).start();
+		
+
 		// 程式開始
 		System.out.println("請輸入代碼:  (輸入help取得說明)");
 		while (sc.hasNextLine()) {
@@ -47,6 +60,7 @@ public class Play {
 			CmdBox.executeCmd(userIn);
 			System.out.println("請輸入代碼: ");
 		}
+		
 
 	}
 
