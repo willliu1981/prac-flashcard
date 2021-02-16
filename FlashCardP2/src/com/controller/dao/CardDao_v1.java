@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.controller.conn.Conn;
-import com.controller.dao.deprecate.CardDao;
 import com.model.main.Card;
 import com.model.main.Vocabulary;
 

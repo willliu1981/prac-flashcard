@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.controller.conn.Conn;
-import com.controller.dao.deprecate.VocabularyDao;
 import com.model.main.Vocabulary;
 
 public class VocabularyDao_v1 extends Dao<Vocabulary> {

@@ -4,7 +4,6 @@ import java.sql.SQLException;
 
 import com.command.execute.Execute;
 import com.command.execute.IModelExecute;
-import com.command.process.deprecate.QueryProcess;
 import com.controller.dao.DaoFactory;
 import com.controller.dao.Dao;
 import com.controller.main.App;
