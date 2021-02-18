@@ -6,10 +6,18 @@ import java.util.List;
 import com.controller.dao.Dao;
 import com.controller.dao.Dao;
 import com.controller.main.App;
+import com.controller.main.CurrentResult;
 import com.model.main.Vocabulary;
 
-public class QueryVocabularyExecute extends Execute<Vocabulary> implements IModelExecute {
+public class QueryVocabularyExecute extends Execute<Vocabulary> implements IModelExecute, SupportFrame<Vocabulary> {
+
+	// public static List<Vocabulary> currentResult;
+	private CurrentResult currentResult;
 	private static final String modelName = App.getDaoSimpleName("vocabulary");
+
+	public QueryVocabularyExecute(CurrentResult currentResult) {
+		this.currentResult = currentResult;
+	}
 
 	@Override
 	public String getModelName() {
@@ -20,8 +28,9 @@ public class QueryVocabularyExecute extends Execute<Vocabulary> implements IMode
 	@Override
 	public int execute(Dao dao, int access, String[] datas) throws ClassNotFoundException, SQLException {
 		if (access == 1) {
-			currentResult=((Dao) dao).queryAll();
-			currentResult.forEach(System.out::println);
+			List<Vocabulary> res = dao.queryAll();
+			res.forEach(System.out::println);
+			this.setResult(res);
 		} else if (access == 2) {
 			boolean isNumber = false;
 			int id = 0;
@@ -49,6 +58,11 @@ public class QueryVocabularyExecute extends Execute<Vocabulary> implements IMode
 	public int execute(int accessCode, String[] datas) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public void setResult(List<Vocabulary> result) {
+		this.currentResult.setResult(result);
 	}
 
 }

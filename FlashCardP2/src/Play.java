@@ -14,6 +14,7 @@ import com.command.process.MenuProcess;
 import com.command.process.ProcessFactory;
 import com.controller.dao.DaoFactory;
 import com.controller.main.App;
+import com.controller.main.CurrentVocabularyResult;
 import com.view.main.MainFrame;
 
 public class Play {
@@ -29,8 +30,9 @@ public class Play {
 		// 設置指令
 		ProcessFactory exitFactory = ProcessFactory.getFactory("menu", MenuProcess.Exit);
 		ProcessFactory testexitFactory = ProcessFactory.getFactory("menu", MenuProcess.Help);
-		ProcessFactory queryFactory = ProcessFactory.getFactory("data", DataProcess.Query, new QueryVocabularyExecute(),
-				new QueryCardExecute(), new QueryBoxExecute(), new QueryExamExecute());
+		MainFrame.currentVocabularyResult = new CurrentVocabularyResult();                  
+		ProcessFactory queryFactory = ProcessFactory.getFactory("data", DataProcess.Query,
+				new QueryVocabularyExecute(MainFrame.currentVocabularyResult), new QueryCardExecute(), new QueryBoxExecute(), new QueryExamExecute());
 		ProcessFactory addFactory = ProcessFactory.getFactory("data", DataProcess.Add, new AddVocabularyExecute(),
 				new AddCardExecute(), new AddBoxExecute());
 		ProcessFactory cnangeTableFactory = ProcessFactory.getFactory("data", DataProcess.Table);
@@ -41,17 +43,16 @@ public class Play {
 		CmdBox.addProcess(exitFactory);
 		CmdBox.addProcess(testexitFactory);
 
-		//view
+		// view
 		new Thread(new Runnable() {
 
 			@Override
 			public void run() {
-				MainFrame view=new MainFrame();
+				MainFrame view = new MainFrame();
 				view.setVisible(true);
 			}
-			
+
 		}).start();
-		
 
 		// 程式開始
 		System.out.println("請輸入代碼:  (輸入help取得說明)");
@@ -60,7 +61,6 @@ public class Play {
 			CmdBox.executeCmd(userIn);
 			System.out.println("請輸入代碼: ");
 		}
-		
 
 	}
 

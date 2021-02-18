@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.command.execute.Execute;
 import com.command.main.CmdBox;
+import com.controller.main.CurrentVocabularyResult;
 import com.model.main.Vocabulary;
 
 import javax.swing.JMenuBar;
@@ -25,7 +26,7 @@ import java.awt.Font;
 import javax.swing.JTextArea;
 
 public class MainFrame extends JFrame {
-
+	public static CurrentVocabularyResult currentVocabularyResult;
 	private JPanel contentPane;
 	private JTextArea textArea_test;
 
@@ -63,7 +64,7 @@ public class MainFrame extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				CmdBox.executeCmd("query");
-				List<Vocabulary> list=(List<Vocabulary>)Execute.currentResult;
+				List<Vocabulary> list=MainFrame.currentVocabularyResult.getResult();
 				textArea_test.setText("" + list);
 			}
 		});
